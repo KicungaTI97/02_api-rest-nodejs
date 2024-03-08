@@ -1,19 +1,15 @@
 import fastify from "fastify"; 
-import { knex } from "./database";
 import crypto from "node:crypto";
+import { knex } from "./database";
 
 const app = fastify();
 
 app.get("/hello", async () => {
-	const transtaction = await knex("transations")
-		.insert({
-			id:crypto.randomUUID(),
-			title: "Transacao de teste",
-			amount:1000,
-		})
-		.returning("*");
+	const transtactions = await knex("transations")
+		.where("amount", 1000)
+		.select("*");
 
-	return transtaction;
+	return transtactions;
 });
 
 app
