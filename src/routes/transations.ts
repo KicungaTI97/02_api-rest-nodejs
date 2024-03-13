@@ -4,6 +4,27 @@ import { z } from "zod";
 import { randomUUID } from "crypto";
 
 export async function transationsRoutes(app: FastifyInstance){
+  
+	app.get("/", async() =>{
+		const transations = await knex("transations").select();
+
+		return {
+			transations
+		};
+	});
+
+	app.get("/:id", async(request) =>{
+		const getTransationsParamsSchema = z.object({
+			id:z.string().uuid(),
+		});
+    
+		const { id } = getTransationsParamsSchema.parse(request.params);
+
+		const transations = await knex("transations").where("id", id).first();
+
+		return{ transations };
+	});
+
 	app.post("/", async (request, reply) => {
 		//{title, amount, type: credit ou debit}
 

@@ -1,4 +1,4 @@
-//eslint-desable-next-line
+//eslint-disable-next-line
 import { Knex } from "knex";
 
 declare module "knex/types/tables"{
