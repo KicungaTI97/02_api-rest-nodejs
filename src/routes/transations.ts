@@ -5,6 +5,12 @@ import { randomUUID } from "crypto";
 
 export async function transationsRoutes(app: FastifyInstance){
   
+	app.get("/summary", async () =>{
+		const summary = await knex("transations").sum("amount", { as: "amount"}).first();
+
+		return {summary};
+	});
+
 	app.get("/", async() =>{
 		const transations = await knex("transations").select();
 
