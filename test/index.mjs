@@ -11,7 +11,7 @@ const schema = z.object({
 const dados = {
 	nome: "João Kicunga",
 	email: "kicungati@gmail.com",
-	idade:25
+	idade:25,
 };
 
 const resultado = schema.parse(dados);
