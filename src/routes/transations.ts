@@ -73,7 +73,7 @@ export async function transationsRoutes(app: FastifyInstance){
 			request.body,
 		);
 
-		let sessionId = request.cookies.session_id;
+		let sessionId = request.cookies.sessionId;
 		console.log(sessionId);
 		
 		if(!sessionId){
